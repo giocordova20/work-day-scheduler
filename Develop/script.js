@@ -1,36 +1,27 @@
+const today = moment();
+currentDate = today.format("LLLL");
+// console.log(currentDate);
 
+var currentTime = moment().format("h:mm:ss A");
+// console.log(currentTime);
+
+
+var currentDay = $("#currentDay");
+currentDay.text(currentDate);
 
 function loadtimeSlots() {
     var scheduleTable = $("<table>");
     var scheduleTableBody = $("<tbody>");
-    
     scheduleTable.append(scheduleTableBody);
     scheduleTable.addClass("table");
     
     $(".container").append(scheduleTable);
-    
     var hourLable = ["9AM","10AM","11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
     
-    for (i = 0; i < 9; i++) {
-        // var timeSlotRow = $("<tr>");
-        // var timeSlotHour = $("<td>"+i+"        </td>");
-        // var timeSlotTask = $("<td>"+i+"    This is the task   </td>");
-        // var timeSlotSave = $("<td>"+i+"    This is the Save    </td>");
-        
-        // timeSlotRow.append(timeSlotHour, timeSlotTask, timeSlotSave);
-        // timeSlotRow.addClass("row");
-        // timeSlotHour.addClass("hour");
-        // timeSlotTask.addClass("task");
-        // timeSlotSave.addClass("saveBtn");
-        // scheduleTable.append(timeSlotRow);
-        
-        // $(".container").append("<tr>").addClass("row").append("<td>"+i+"</td>").addClass("hour").append("<td>"+i+"</td>").append("<td>"+i+"</td>");
-        
-        
-        
+    // Create the rows for each hour slot
+    for (i = 0; i < 9; i++) {        
         var timeSlotRow = $("<div>");
         var timeSlotHour = $("<div>");
-        console.log("    hourLable  ",hourLable[i]);
         timeSlotHour.text(hourLable[i]);
         var timeSlotTask = $("<div>");
         var timeSlotSave = $("<div>");
@@ -38,26 +29,11 @@ function loadtimeSlots() {
         timeSlotRow.append(timeSlotHour,timeSlotTask,timeSlotSave);
         timeSlotRow.addClass("row");
         timeSlotHour.addClass("col-1 text hour");
-        
-
         timeSlotTask.addClass("col task");
         timeSlotSave.addClass("col-1 saveBtn");
-
-
         scheduleTableBody.append(timeSlotRow);
-
-
-        
-        
         
     }
-    
-    // var hourLable = ["9AM","10AM","11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
-    // $.each(hourLable, function(index,val){
-    //     console.log(index + " " + val);
-    //     timeSlotHour.text(val);
-    // });    
-    
      
 
 };
