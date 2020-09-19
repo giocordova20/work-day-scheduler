@@ -25,7 +25,9 @@ function loadtimeSlots() {
         var timeSlotRow = $("<div>");
         var timeSlotHour = $("<div>");
         timeSlotHour.text(hourLable[i]);
-        var timeSlotTask = $("<div>");
+        var timeSlotTask = $("<textarea>");
+        // var timeSlotTask = $("<div>");
+        // timeSlotTask.append($("<textarea>"))
         var timeSlotSave = $("<div>");
         timeSlotSave.append($("<i>").addClass("fas fa-save save"+i));
 
