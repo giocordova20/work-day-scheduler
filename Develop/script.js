@@ -8,6 +8,8 @@ var currentTime = moment().format("h:mm:ss A");
 
 var currentDay = $("#currentDay");
 currentDay.text(currentDate);
+var saveIcon = $("<i>")
+saveIcon.addClass=("fas fa-save");
 
 function loadtimeSlots() {
     var scheduleTable = $("<table>");
@@ -25,12 +27,14 @@ function loadtimeSlots() {
         timeSlotHour.text(hourLable[i]);
         var timeSlotTask = $("<div>");
         var timeSlotSave = $("<div>");
+        timeSlotSave.append($("<i>").addClass("fas fa-save save"+i));
 
         timeSlotRow.append(timeSlotHour,timeSlotTask,timeSlotSave);
         timeSlotRow.addClass("row");
         timeSlotHour.addClass("col-1 text hour");
         timeSlotTask.addClass("col task");
-        timeSlotSave.addClass("col-1 saveBtn");
+        timeSlotSave.addClass("col-1 saveBtn text-center pt-4");
+
         scheduleTableBody.append(timeSlotRow);
         
     }
