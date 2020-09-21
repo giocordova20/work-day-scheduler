@@ -34,8 +34,7 @@ $(document).ready(function() {
             timeSlotHour.text(hourLable[i]);                            // Add hour lable to the hour column
             var taskInStorage = localStorage.getItem(hourLable[i]);     // Task in local storage for the specified hour
             
-            console.log(hourLable24[i], currentHour);
-            
+
             if (currentHour > hourLable24[i]){
                 timeSlotTask.addClass("past")
             }else if (currentHour == hourLable24[i]){
