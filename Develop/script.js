@@ -3,10 +3,11 @@ $(document).ready(function() {
     
     const today = moment();
     currentDate = today.format("LLLL");
-    // console.log(currentDate);
-    var currentTime = moment().format("h:mm:ss A");
+    // console.log(today.format("h"));
+    var currentHour = today.hour();
     // console.log(currentTime);
-    var hourLable = ["9AM","10AM","11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+    var hourLable = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+    var hourLable24 = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 
     var currentDay = $("#currentDay");
@@ -21,7 +22,7 @@ $(document).ready(function() {
         scheduleTable.append(scheduleTableBody);
         scheduleTable.addClass("table");
         $(".container").append(scheduleTable);
-        
+
         // Create the rows for each hour slot
         for (i = 0; i < 9; i++) {        
             var timeSlotRow = $("<div class='row'>");                   // Create div for the row
@@ -33,41 +34,43 @@ $(document).ready(function() {
             timeSlotHour.text(hourLable[i]);                            // Add hour lable to the hour column
             var taskInStorage = localStorage.getItem(hourLable[i]);     // Task in local storage for the specified hour
             
+            console.log(hourLable24[i], currentHour);
+            
+            if (currentHour > hourLable24[i]){
+                timeSlotTask.addClass("past")
+            }else if (currentHour == hourLable24[i]){
+                timeSlotTask.addClass("present")
+            }else if(currentHour < hourLable24[i]){
+                timeSlotTask.addClass("future")
+            }
+
             // Return data from local storage if it exists
             if (taskInStorage){
                 timeSlotTask.text(taskInStorage);
-                console.log(taskInStorage);
             }
+
 
             // Create event listener for each save button 
             saveBtn.on("click", function(event){
-                // Get the lable of the hour column to use as the key, and content of the textarea
-                // to save the task
                 var hour = $(this).parent().siblings('textarea').prev().text();
                 var task = $(this).parent().siblings('textarea').val();
                 
-                console.log("");
-                console.log("save button has been clicked");
-
-                // Add the task to local storage if there is an input
                 if (task != ""){
-                console.log('Sibling: ', $(this).parent().siblings('textarea').prev().text());
-                console.log("hour: ", hour, "task: ", task);
                 localStorage.setItem(hour, task);
                 }
-                console.log("");
+                alert("You Task Has Been Saved");
             });
             
             timeSlotSave.append(saveBtn);                               // Append the save button to save column
             timeSlotRow.append(timeSlotHour,timeSlotTask,timeSlotSave); // Append the completed row to the table
-            
+
             scheduleTableBody.append(timeSlotRow);
         }
         
         
     };
     
-    
+
 
     loadtimeSlots();
 });
