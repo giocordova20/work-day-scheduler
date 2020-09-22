@@ -85,7 +85,7 @@ textarea{
 
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 576px) { 
+@media (max-width: 576px) { 
   .display-3 {
     font-size: 2rem;
     color: #aaa;
