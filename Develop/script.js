@@ -31,6 +31,9 @@ $(document).ready(function() {
             timeSlotTask.addClass('col task '+hourLable[i]);            // Add the task class to textarea
             var timeSlotSave = $("<div class='col-1 saveBtn text-center pt-4'>");   // Create div for the save button
             var saveBtn =$("<i>").addClass("save-task fas fa-save save"+i);         // Create the save button with fontawesome
+            var clearBtn =$("<span>").addClass("clear-task fas fa-trash-alt pl-3 clear"+i);         // Create the save button with fontawesome
+           
+           
             timeSlotHour.text(hourLable[i]);                            // Add hour lable to the hour column
             var taskInStorage = localStorage.getItem(hourLable[i]);     // Task in local storage for the specified hour
             
@@ -54,13 +57,28 @@ $(document).ready(function() {
                 var hour = $(this).parent().siblings('textarea').prev().text();
                 var task = $(this).parent().siblings('textarea').val();
                 
+                // Make sure the task is not empty, save task to localStorage, refresh page
                 if (task != ""){
                 localStorage.setItem(hour, task);
-                }
+                location.reload();
                 alert("You Task Has Been Saved");
+
+                }
+            });
+
+            // Create event listener for each clear button 
+            clearBtn.on("click", function(event){
+                var hour = $(this).parent().siblings('textarea').prev().text();
+                var task = $(this).parent().siblings('textarea').val();
+                
+                // Make sure the task is not empty, clear localStorage, refresh page
+                if (task != ""){
+                location.reload();
+                localStorage.removeItem(hour);
+                }
             });
             
-            timeSlotSave.append(saveBtn);                               // Append the save button to save column
+            timeSlotSave.append(saveBtn,clearBtn);                               // Append the save button to save column
             timeSlotRow.append(timeSlotHour,timeSlotTask,timeSlotSave); // Append the completed row to the table
 
             scheduleTableBody.append(timeSlotRow);

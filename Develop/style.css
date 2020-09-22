@@ -89,4 +89,7 @@ textarea{
     font-size: 12px;
   }
 
+  .saveBtn {
+    padding:1px;
+  }
 }
