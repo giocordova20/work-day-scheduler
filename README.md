@@ -30,8 +30,9 @@ WHEN I refresh the page
 THEN the saved events persist
 ```
 
-The following animation demonstrates the application functionality:
+The following animation demonstrates the application functionality on desktop:
 
 ![day planner demo](./Assets/WorkDayScheduler.gif)
 
-
+Work Day Scheduler on responsive view.
+![day planner responsive](./Assets/WorkDayScheduleResponsive.png)
